@@ -23,10 +23,13 @@ if [[ -z "${SITE_NAME}" ]]; then
   exit 1
 fi
 
+# Make sure we have all the environment information we need.
 source ./env-check.sh
 
+# The SITE_NAME is pulled from the .env file.
 SITE_PATH="${SITE_NAME}.${ENV_NAME}"
 
+# Pull in the functions we need.
 source ./bash-functions.sh
 source ./terminus-functions.sh
 
@@ -54,7 +57,7 @@ confirm_message "Are you sure you want to update these plugins to their current 
 
 printf "\nTime to update some plugins...\n\n"
 
-commit_message=$(${TERMINUS_BINARY} wp "${SITE_PATH}" -- plugin update --all --format=table --quiet --require=hide_php_errors.php)
+commit_message=$(${TERMINUS_BINARY} wp "${SITE_PATH}" -- plugin update --all --format=table --quiet --require=hide_php_errors.php --exclude=google-analytics-for-wordpress/googleanalytics.php,google-analytics-dashboard-for-wp/gadwp.php)
 
 printf "\nThe following plugins were updated on the dev environment:"
 printf "\n%s\n" "${commit_message}"
