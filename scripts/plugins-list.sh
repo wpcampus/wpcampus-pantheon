@@ -14,17 +14,29 @@ ENV_NAME="dev"
 # Defines the following variables that we need:
 # - TERMINUS_BINARY
 # - PANTHEON_EMAIL
-# - SITE_PATH
 source ./env-setup.sh
 
 # Pull in the functions we need.
+source ./bash-functions.sh
 source ./terminus-functions.sh
 
 auth "${PANTHEON_EMAIL}"
-wake_env "${SITE_PATH}"
 
-printf "\n"
+# Converts SITE_NAME to a CSV array which allows
+# for multiple sites to be processed at the same time.
+export IFS=","
+for site in $SITE_NAME; do
 
-${TERMINUS_BINARY} wp "${SITE_PATH}" -- plugin list --format=table
+  display_header "Pinging the ${site} ${ENV_NAME} environment"
+
+  # The SITE_NAME is the first argument received from the command.
+  SITE_PATH="${site}.${ENV_NAME}"
+
+  wake_env "${SITE_PATH}"
+
+  printf "\n"
+
+  ${TERMINUS_BINARY} wp "${SITE_PATH}" -- plugin list --format=table
+done
 
 printf "\n"
