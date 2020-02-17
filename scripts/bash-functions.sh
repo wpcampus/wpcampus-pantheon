@@ -8,3 +8,9 @@ confirm_message() {
   *) exit ;;
   esac
 }
+
+# Will print a message with horizontal lines above and below.
+# Pass the message as the first variable.
+display_header() {
+  printf "\n---------------\n%s\n---------------\n\n" "$1"
+}
