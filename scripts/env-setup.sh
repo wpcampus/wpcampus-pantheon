@@ -58,3 +58,6 @@ if [[ -z "${PANTHEON_EMAIL}" ]]; then
   printf "\nYou must provide the email for your Pantheon account in the .env file.\nSee the README for more information.\n\n"
   exit 1
 fi
+
+# The SITE_NAME is the first argument received from the command.
+SITE_PATH="${SITE_NAME}.${ENV_NAME}"
