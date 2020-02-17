@@ -30,7 +30,21 @@ Make sure the Pantheon environment is set to SFTP mode.
 
 This script will only update the plugin code on the Pantheon dev environment.
 
-After you've tested the dev environment to ensure the updates didn't create issues, you will then have to manually commit the code updates to the TEST and PROD environments inside the Pantheon Dashboard.
+After you've tested the dev environment to ensure the updates didn't create issues, you will then have to commit the code updates to the site's TEST and PROD environments.
+
+#### Committing code to TEST and PROD
+
+You can commit the code changes inside the Pantheon Dashboard or through the Terminus CLI.
+
+Run the following command to deploy code changes to a specific environment:
+
+```
+bash code-deploy.sh [site name] [environment] "[deploy note]"
+```
+
+Replace `[environment]` with the environment name: `dev`, `test`, or `live`.
+
+Replace `[deploy note]` with a note describing the deploy. Be sure to keep the message in quotes.
 
 ### Script: Displaying list of WordPress plugins
 
