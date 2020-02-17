@@ -13,7 +13,13 @@ commit_code() {
 }
 
 # Wakes the site environment.
-# Pass the site path as the first variable.
+# Pass the site path as the first variable, e.g. sitename.dev.
 wake_env() {
   ${TERMINUS_BINARY} env:wake "$1"
+}
+
+# Clears caches for the Pantheon environment.
+# Pass the site path as the first variable, e.g. sitename.dev.
+clear_cache() {
+  ${TERMINUS_BINARY} env:clear-cache "$1"
 }
