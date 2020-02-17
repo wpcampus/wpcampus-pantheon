@@ -10,6 +10,28 @@ To run a script, open the `/scripts` directory inside your computer's Terminal a
 
 *These scripts have only been tested on Mac OS.*
 
+### Script: Displaying list of WordPress plugins
+
+Use the following command to display the list of plugins for a specific site, a combination of sites, or all sites you have access to:
+
+```
+bash plugins-list.sh [site name,site name,site name]|all
+```
+
+Replace `[site name]` with the [site name given by Pantheon](#highedweb-site-names).
+
+Leave no spaces between the site names. For example:
+
+```
+bash plugins-list.sh hew16,hew17,hew18
+```
+
+To display the plugins for all sites you have access to:
+
+```
+bash plugins-list.sh all
+```
+
 ### Script: Updating WordPress plugins
 
 Use the following command to update the plugins for a specific site, a combination of sites, or all sites you have access to:
@@ -40,9 +62,9 @@ Make sure the Pantheon environment is set to SFTP mode.
 
 This script will only update the plugin code on the Pantheon dev environment.
 
-After you've tested the dev environment to ensure the updates didn't create issues, you will then have to commit the code updates to the site's TEST and PROD environments.
+After you've tested the dev environment to ensure the updates did not create issues, you will then have to deploy the code to the site's TEST and PROD environments.
 
-#### Deploying code to TEST and PROD
+### Script: Deploying code to TEST and PROD
 
 You can only commit code to the dev environment. Once tested on dev, you then deploy the code to the TEST and PROD environments. 
 
@@ -55,28 +77,6 @@ bash code-deploy.sh [site name] [test|live] "[deploy note]"
 ```
 
 Replace `[deploy note]` with a note describing the deploy. Be sure to keep the message in quotes.
-
-### Script: Displaying list of WordPress plugins
-
-Use the following command to display the list of plugins for a specific site, a combination of sites, or all sites you have access to:
-
-```
-bash plugins-list.sh [site name,site name,site name]|all
-```
-
-Replace `[site name]` with the [site name given by Pantheon](#highedweb-site-names).
-
-Leave no spaces between the site names. For example:
-
-```
-bash plugins-list.sh hew16,hew17,hew18
-```
-
-To display the plugins for all sites you have access to:
-
-```
-bash plugins-list.sh all
-```
 
 ## Requirements
 
