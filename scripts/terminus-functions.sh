@@ -4,10 +4,11 @@ auth() {
   ${TERMINUS_BINARY} auth:login --email="$1"
 }
 
-# Commits the current changes to the dev environment.
-# Pass the site path as the first variable.
-# Pass the commit message as the second variable.
-commit_to_dev() {
+# Commits the current changes to a site path.
+# Order of variables:
+# 1. The site path, e.g. sitename.dev
+# 2. The commit message
+commit_code() {
   ${TERMINUS_BINARY} env:commit --message "$2" -- "$1"
 }
 
