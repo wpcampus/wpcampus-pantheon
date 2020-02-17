@@ -25,45 +25,57 @@ source ./bash-functions.sh
 source ./terminus-functions.sh
 
 auth "${PANTHEON_EMAIL}"
-wake_env "${SITE_PATH}"
 
-printf "\nChecking to see if any plugins need an update...\n\n"
+# Converts SITE_NAME to a CSV array which allows
+# for multiple sites to be processed at the same time.
+export IFS=","
+for site in $SITE_NAME; do
 
-# TODO: optimize to parse CSV into an array and not have to run WPCLI plugin list multiple times?
-plugins_update_count=$(${TERMINUS_BINARY} wp "${SITE_PATH}" -- plugin list --format=count --update=available)
+  display_header "Pinging the ${site} ${ENV_NAME} environment"
 
-if [[ "0" == ${plugins_update_count} ]]; then
-  plugins_table=$(${TERMINUS_BINARY} wp "${SITE_PATH}" -- plugin list --format=table)
-  printf "\nThere are no plugins with an update available.\n%s\n\n" "${plugins_table}"
-  exit 0
-fi
+  # The SITE_NAME is the first argument received from the command.
+  SITE_PATH="${site}.${ENV_NAME}"
 
-# TODO: optimize to parse CSV into an array and not have to run WPCLI plugin list multiple times?
-plugins_update_table=$(${TERMINUS_BINARY} wp "${SITE_PATH}" -- plugin list --format=table --update=available)
+  wake_env "${SITE_PATH}"
 
-printf "\nThe following plugins have an update available:\n%s\n" "${plugins_update_table}"
+  printf "\nChecking to see if any plugins need an update...\n\n"
 
-# Ask for update confirmation.
-confirm_message "Are you sure you want to update these plugins to their current version?\nMake sure the Pantheon environment is set to SFTP mode."
+  # TODO: optimize to parse CSV into an array and not have to run WPCLI plugin list multiple times?
+  plugins_update_count=$(${TERMINUS_BINARY} wp "${SITE_PATH}" -- plugin list --format=count --update=available)
 
-printf "\nTime to update some plugins...\n\n"
+  if [[ "0" == ${plugins_update_count} ]]; then
+    plugins_table=$(${TERMINUS_BINARY} wp "${SITE_PATH}" -- plugin list --format=table)
+    printf "\nThere are no plugins with an update available.\n%s\n\n" "${plugins_table}"
+    exit 0
+  fi
 
-commit_message=$(${TERMINUS_BINARY} wp "${SITE_PATH}" -- plugin update --all --format=table --quiet --require=hide_php_errors.php --exclude=google-analytics-for-wordpress/googleanalytics.php,google-analytics-dashboard-for-wp/gadwp.php)
+  # TODO: optimize to parse CSV into an array and not have to run WPCLI plugin list multiple times?
+  plugins_update_table=$(${TERMINUS_BINARY} wp "${SITE_PATH}" -- plugin list --format=table --update=available)
 
-printf "\nThe following plugins were updated on the dev environment:"
-printf "\n%s\n" "${commit_message}"
+  printf "\nThe following plugins have an update available:\n%s\n" "${plugins_update_table}"
 
-# Ask for commit confirmation.
-confirm_message "Do you want to commit these changes to the dev environment?"
+  # Ask for update confirmation.
+  confirm_message "Are you sure you want to update these plugins in the ${site} ${ENV_NAME} environment?\nMake sure the Pantheon environment is set to SFTP mode."
 
-printf "\n"
+  printf "\nUpdating plugins in the %s %s environment...\n\n" "${site}" "${ENV_NAME}"
 
-commit_code "${SITE_PATH}" "${commit_message}"
+  commit_message=$(${TERMINUS_BINARY} wp "${SITE_PATH}" -- plugin update --all --format=table --quiet --require=hide_php_errors.php)
 
-printf "\n"
+  printf "\nThe following plugins were updated in the %s %s environment:" "${site}" "${ENV_NAME}"
+  printf "\n%s\n" "${commit_message}"
 
-clear_cache "${SITE_PATH}"
+  # Ask for commit confirmation.
+  confirm_message "Do you want to commit these changes to the ${site} ${ENV_NAME} environment?"
 
-printf "\nFYI: The plugin code has only been updated on the Pantheon dev environment."
-printf "\n\nAfter you've tested the dev environment to ensure the updates didn't create issues, you will then have to manually commit the code updates to PROD inside the Pantheon Dashboard."
+  printf "\n"
+
+  commit_code "${SITE_PATH}" "${commit_message}"
+
+  printf "\n"
+
+  clear_cache "${SITE_PATH}"
+done
+
+printf "\nFYI: The plugin code has only been updated in the defined environments."
+printf "\n\nAfter you've tested the %s environment(s), you will have to deploy the code updates to the TEST and PROD environment(s)." "${ENV_NAME}"
 printf "\n\n"
