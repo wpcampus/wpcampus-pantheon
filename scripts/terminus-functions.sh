@@ -23,3 +23,9 @@ wake_env() {
 clear_cache() {
   ${TERMINUS_BINARY} env:clear-cache "$1"
 }
+
+# Deploys code to a Pantheon environment.
+# Pass the site path as the first variable, e.g. sitename.dev.
+deploy() {
+  ${TERMINUS_BINARY} env:deploy "$1"
+}
