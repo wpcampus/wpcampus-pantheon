@@ -14,6 +14,9 @@
 source ./bash-functions.sh
 source ./terminus-functions.sh
 
+# Our Pantheon organization name.
+ORG_NAME="highedweb"
+
 # Is the first argument received from the command.
 SITE_NAME=$1
 
@@ -72,7 +75,7 @@ auth "${PANTHEON_EMAIL}"
 if [[ "all" == ${SITE_NAME} ]]; then
 
   SITE_NAME=""
-  USER_SITES=$(${TERMINUS_BINARY} site:list --org=highedweb --field=name)
+  USER_SITES=$(${TERMINUS_BINARY} site:list --org=${ORG_NAME} --field=name)
 
   if [[ -z "${USER_SITES}" ]]; then
     printf "\nYou do not have access to any HighEdWeb environments on Pantheon.\n\nIf you believe this is an error, please contact the HighEdWeb Technical committee.\n\n"
