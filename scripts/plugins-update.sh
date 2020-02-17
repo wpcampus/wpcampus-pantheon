@@ -59,6 +59,9 @@ confirm_message "Do you want to commit these changes to the dev environment?"
 printf "\n"
 
 commit_code "${SITE_PATH}" "${commit_message}"
+
+printf "\n"
+
 clear_cache "${SITE_PATH}"
 
 printf "\nFYI: The plugin code has only been updated on the Pantheon dev environment."
