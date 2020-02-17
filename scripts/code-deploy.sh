@@ -20,7 +20,7 @@ shift
 
 # Confirm we have a note.
 if [[ -z "${NOTE}" ]]; then
-  printf "\nA note describing the deploy is required to run this script.\n\nCommand: %s <site_name> <environment> \"I'm a note about the deploy\"" "$0"
+  printf "\nA note describing the deploy is required to run this script.\n\nCommand: %s [site_name] [environment] \"I'm a note about the deploy\"" "$0"
   printf "\n\nExample: %s heweb16 %s \"Updating plugins\"\n\n" "$0" "${ENV_NAME}"
   exit 1
 fi
