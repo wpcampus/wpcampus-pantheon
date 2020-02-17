@@ -24,8 +24,6 @@ source ./env-setup.sh
 source ./bash-functions.sh
 source ./terminus-functions.sh
 
-auth "${PANTHEON_EMAIL}"
-
 # Converts SITE_NAME to a CSV array which allows
 # for multiple sites to be processed at the same time.
 export IFS=","

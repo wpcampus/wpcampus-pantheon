@@ -29,7 +29,6 @@ fi
 source ./bash-functions.sh
 source ./terminus-functions.sh
 
-auth "${PANTHEON_EMAIL}"
 wake_env "${SITE_PATH}"
 
 printf "\n"

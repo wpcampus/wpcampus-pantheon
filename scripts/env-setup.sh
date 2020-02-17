@@ -61,3 +61,5 @@ fi
 
 # The SITE_NAME is the first argument received from the command.
 SITE_PATH="${SITE_NAME}.${ENV_NAME}"
+
+auth "${PANTHEON_EMAIL}"
