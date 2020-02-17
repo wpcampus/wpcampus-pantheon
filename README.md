@@ -12,15 +12,19 @@ To run a script, open the `/scripts` directory inside your computer's Terminal a
 
 ### Script: Updating WordPress plugins
 
-Use the following command to update the plugins for a specific site:
+Use the following command to update the plugins for a specific site or a combination of sites:
 
 ```
-bash plugins-update.sh [site name]
+bash plugins-update.sh [site name,site name,site name]
 ```
 
-Replace `[site name]` with the site name given by Pantheon.
+Replace `[site name]` with the [site name given by Pantheon](#highedweb-site-names).
 
-A site's Pantheon name is displayed at the top of the Pantheon Dashboard and included in our [list of HighEdWeb site names](#highedweb-site-names).
+Leave no spaces between the site names. For example:
+
+```
+bash plugins-update.sh hew16,hew17,hew18
+```
 
 #### Before you run the script
 
@@ -48,15 +52,19 @@ Replace `[deploy note]` with a note describing the deploy. Be sure to keep the m
 
 ### Script: Displaying list of WordPress plugins
 
-Use the following command to display the list of plugins for a specific site:
+Use the following command to display the list of plugins for a specific site or a combination of sites:
 
 ```
-bash plugins-list.sh [site name]
+bash plugins-list.sh [site name,site name,site name]
 ```
 
-Replace `[site name]` with the site name given by Pantheon.
+Replace `[site name]` with the [site name given by Pantheon](#highedweb-site-names).
 
-A site's Pantheon name is displayed at the top of the Pantheon Dashboard and included in our [list of HighEdWeb site names](#highedweb-site-names).
+Leave no spaces between the site names. For example:
+
+```
+bash plugins-list.sh hew16,hew17,hew18
+```
 
 ## Requirements
 
