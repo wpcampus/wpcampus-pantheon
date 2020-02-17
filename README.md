@@ -28,9 +28,21 @@ Make sure the Pantheon environment is set to SFTP mode.
 
 #### After you run the script
 
-**This script will only update the plugin code on the Pantheon dev environment.**
+This script will only update the plugin code on the Pantheon dev environment.
 
 After you've tested the dev environment to ensure the updates didn't create issues, you will then have to manually commit the code updates to the TEST and PROD environments inside the Pantheon Dashboard.
+
+### Script: Displaying list of WordPress plugins
+
+Use the following command to display the list of plugins for a specific site:
+
+```
+bash plugins-list.sh [site name]
+```
+
+Replace `[site name]` with the site name given by Pantheon.
+
+A site's Pantheon name is displayed at the top of the Pantheon Dashboard and included in our [list of HighEdWeb site names](#highedweb-site-names).
 
 ## Requirements
 
@@ -66,15 +78,16 @@ To setup: copy the `.env.sample` file included in the repo, rename to `.env`, an
 
 The following are the Pantheon site names for each HighEdWeb site, which are passed as arguments to our scripts.
 
-* `highedweb` - [highedweb.org](https://www.highedweb.org/)
-* `hew16` - [2016.highedweb.org](https://2016.highedweb.org/)
-* `hew17` - [2017.highedweb.org](https://2017.highedweb.org/)
-* `hew18` - [2018.highedweb.org](https://2018.highedweb.org/)
-* `highedweb-2019-annual-conference` - [2019.highedweb.org](https://2019.highedweb.org/)
-* `highedweb-2020-annual-conference` - [2020.highedweb.org](https://2020.highedweb.org/)
-* `hewlink` - [link.highedweb.org](https://link.highedweb.org/)
-* `hewregional` - [regionals.highedweb.org](https://regionals.highedweb.org/)
-* `highedweb-crm` - [membership.highedweb.org](https://membership.highedweb.org/)
+1. `highedweb` - [highedweb.org](https://www.highedweb.org/)
+2. `hew16` - [2016.highedweb.org](https://2016.highedweb.org/)
+3. `hew17` - [2017.highedweb.org](https://2017.highedweb.org/)
+4. `hew18` - [2018.highedweb.org](https://2018.highedweb.org/)
+5. `highedweb-2019-annual-conference` - [2019.highedweb.org](https://2019.highedweb.org/)
+6. `highedweb-2020-annual-conference` - [2020.highedweb.org](https://2020.highedweb.org/)
+7. `hewacademy` - [wpacademies.highedweb.org](https://wpacademies.highedweb.org/)
+8. `hewlink` - [link.highedweb.org](https://link.highedweb.org/)
+9. `hewregional` - [regionals.highedweb.org](https://regionals.highedweb.org/)
+10. `highedweb-crm` - [membership.highedweb.org](https://membership.highedweb.org/)
 
 ## Files for Pantheon
 
