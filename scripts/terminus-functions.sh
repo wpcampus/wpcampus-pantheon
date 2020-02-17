@@ -27,5 +27,5 @@ clear_cache() {
 # Deploys code to a Pantheon environment.
 # Pass the site path as the first variable, e.g. sitename.dev.
 deploy() {
-  ${TERMINUS_BINARY} env:deploy "$1"
+  ${TERMINUS_BINARY} env:deploy "$1" --note "$2"
 }

@@ -31,8 +31,6 @@ if [[ -z "${ENV_NAME}" ]]; then
   fi
 fi
 
-shift
-
 SCRIPTDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 cd "${SCRIPTDIR}"
 
