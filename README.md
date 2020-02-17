@@ -12,10 +12,10 @@ To run a script, open the `/scripts` directory inside your computer's Terminal a
 
 ### Script: Updating WordPress plugins
 
-Use the following command to update the plugins for a specific site or a combination of sites:
+Use the following command to update the plugins for a specific site, a combination of sites, or all sites you have access to:
 
 ```
-bash plugins-update.sh [site name,site name,site name]
+bash plugins-update.sh [site name,site name,site name]|all
 ```
 
 Replace `[site name]` with the [site name given by Pantheon](#highedweb-site-names).
@@ -24,6 +24,12 @@ Leave no spaces between the site names. For example:
 
 ```
 bash plugins-update.sh hew16,hew17,hew18
+```
+
+To update plugins for all sites you have access to:
+
+```
+bash plugins-update.sh all
 ```
 
 #### Before you run the script
@@ -52,10 +58,10 @@ Replace `[deploy note]` with a note describing the deploy. Be sure to keep the m
 
 ### Script: Displaying list of WordPress plugins
 
-Use the following command to display the list of plugins for a specific site or a combination of sites:
+Use the following command to display the list of plugins for a specific site, a combination of sites, or all sites you have access to:
 
 ```
-bash plugins-list.sh [site name,site name,site name]
+bash plugins-list.sh [site name,site name,site name]|all
 ```
 
 Replace `[site name]` with the [site name given by Pantheon](#highedweb-site-names).
@@ -64,6 +70,12 @@ Leave no spaces between the site names. For example:
 
 ```
 bash plugins-list.sh hew16,hew17,hew18
+```
+
+To display the plugins for all sites you have access to:
+
+```
+bash plugins-list.sh all
 ```
 
 ## Requirements

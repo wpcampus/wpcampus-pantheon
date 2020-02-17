@@ -10,6 +10,10 @@
 # - SITE_PATH
 ###
 
+# Pull in the functions we need.
+source ./bash-functions.sh
+source ./terminus-functions.sh
+
 # Is the first argument received from the command.
 SITE_NAME=$1
 
@@ -63,3 +67,27 @@ fi
 SITE_PATH="${SITE_NAME}.${ENV_NAME}"
 
 auth "${PANTHEON_EMAIL}"
+
+# If requested all sites, then convert SITE_NAME to a CSV list of all sites the user has access to.
+if [[ "all" == ${SITE_NAME} ]]; then
+
+  SITE_NAME=""
+  USER_SITES=$(${TERMINUS_BINARY} site:list --org=highedweb --field=name)
+
+  if [[ -z "${USER_SITES}" ]]; then
+    printf "\nYou do not have access to any HighEdWeb environments on Pantheon.\n\nIf you believe this is an error, please contact the HighEdWeb Technical committee.\n\n"
+    exit 1
+  fi
+
+  display_header "You have access to the following sites:"
+
+  printf "%s\n" "${USER_SITES}"
+
+  IFS=$'\n'
+  for site in $USER_SITES; do
+    if [[ -n "${SITE_NAME}" ]]; then
+      SITE_NAME="${SITE_NAME},"
+    fi
+    SITE_NAME="${SITE_NAME}${site}"
+  done
+fi
