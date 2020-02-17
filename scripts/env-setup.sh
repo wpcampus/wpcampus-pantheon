@@ -12,13 +12,26 @@
 
 # Is the first argument received from the command.
 SITE_NAME=$1
-shift
 
 # Confirm we have a site name.
 if [[ -z "${SITE_NAME}" ]]; then
   printf "\nA site name is required to run this script.\n\nCommand: %s <site_name>\n\nExample: %s heweb16\n\nThe site name is the name displayed at the top of the Pantheon Dashboard.\n\n" "$0" "$0"
   exit 1
 fi
+
+# Confirm we have a defined environment.
+if [[ -z "${ENV_NAME}" ]]; then
+
+  # Will be the second argument received from the command. Will always be dev, test, or live.
+  ENV_NAME=$2
+
+  if [[ -z "${ENV_NAME}" ]]; then
+    printf "\nAn environment is required to run this script.\n\nCommand: %s <site_name> <environment>\n\nExample: %s %s dev\n\n" "$0" "$0" "${SITE_NAME}"
+    exit 1
+  fi
+fi
+
+shift
 
 SCRIPTDIR=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 cd "${SCRIPTDIR}"
