@@ -15,7 +15,7 @@ source ./bash-functions.sh
 source ./terminus-functions.sh
 
 # Our Pantheon organization name.
-ORG_NAME="highedweb"
+ORG_NAME="wpcampus"
 
 # Is the first argument received from the command.
 SITE_NAME=$1
