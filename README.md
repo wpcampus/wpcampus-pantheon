@@ -15,7 +15,7 @@ To run a script, open the `/scripts` directory inside your computer's Terminal a
 Use the following command to display the list of plugins on our site:
 
 ```
-bash plugins-list.sh wpcampus
+bash plugins-list.sh
 ```
 
 ### Script: Updating WordPress plugins
@@ -23,7 +23,7 @@ bash plugins-list.sh wpcampus
 Use the following command to update the plugins on our site:
 
 ```
-bash plugins-update.sh wpcampus
+bash plugins-update.sh
 ```
 
 #### Before you run the script
@@ -45,7 +45,7 @@ You can deploy inside the Pantheon Dashboard or through the Terminus CLI.
 Run the following command to deploy:
 
 ```
-bash code-deploy.sh wpcampus [test|live] "[deploy note]"
+bash code-deploy.sh [test|live] "[deploy note]"
 ```
 
 Replace `[deploy note]` with a note describing the deploy. Be sure to keep the message in quotes.
