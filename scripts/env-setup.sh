@@ -14,7 +14,8 @@
 source ./bash-functions.sh
 source ./terminus-functions.sh
 
-# Our Pantheon organization name.
+# Our Pantheon organization information.
+ORG_LABEL="WPCampus"
 ORG_NAME="wpcampus"
 
 # Is the first argument received from the command.
@@ -78,7 +79,7 @@ if [[ "all" == ${SITE_NAME} ]]; then
   USER_SITES=$(${TERMINUS_BINARY} site:list --org=${ORG_NAME} --field=name)
 
   if [[ -z "${USER_SITES}" ]]; then
-    printf "\nYou do not have access to any HighEdWeb environments on Pantheon.\n\nIf you believe this is an error, please contact the HighEdWeb Technical committee.\n\n"
+    printf "\nYou do not have access to any %s environments on Pantheon.\n\nIf you believe this is an error, please contact the %s Technical committee.\n\n" "${ORG_LABEL}" "${ORG_LABEL}"
     exit 1
   fi
 
