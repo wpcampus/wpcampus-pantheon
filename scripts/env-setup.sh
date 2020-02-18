@@ -19,22 +19,16 @@ ORG_LABEL="WPCampus"
 ORG_NAME="wpcampus"
 
 # Is the first argument received from the command.
-SITE_NAME=$1
-
-# Confirm we have a site name.
-if [[ -z "${SITE_NAME}" ]]; then
-  printf "\nA site name is required to run this script.\n\nCommand: %s [site_name]\n\nExample: %s heweb16\n\nThe site name is the name displayed at the top of the Pantheon Dashboard.\n\n" "$0" "$0"
-  exit 1
-fi
+SITE_NAME="wpcampus"
 
 # Confirm we have a defined environment.
 if [[ -z "${ENV_NAME}" ]]; then
 
   # Will be the second argument received from the command. Will always be dev, test, or live.
-  ENV_NAME=$2
+  ENV_NAME=$1
 
   if [[ -z "${ENV_NAME}" ]]; then
-    printf "\nAn environment is required to run this script.\n\nCommand: %s [site_name] [environment]\n\nExample: %s %s dev\n\n" "$0" "$0" "${SITE_NAME}"
+    printf "\nAn environment is required to run this script.\n\nCommand: %s [environment]\n\nExample: %s dev\n\n" "$0" "$0"
     exit 1
   fi
 fi
@@ -44,7 +38,7 @@ cd "${SCRIPTDIR}"
 
 # Check for the .env file.
 if [ ! -f "${SCRIPTDIR}/.env" ]; then
-  printf "\nCould not find the .env file. Copy the .env.sample to .env and customize the file.\nSee the README for more information.\n\n"
+  printf "\nCould not find the .env file. Copy the .env.sample to .env and customize the file.\n\nSee the README for more information.\n\n"
   exit 1
 fi
 
@@ -67,31 +61,10 @@ if [[ -z "${PANTHEON_EMAIL}" ]]; then
   exit 1
 fi
 
-# The SITE_NAME is the first argument received from the command.
 SITE_PATH="${SITE_NAME}.${ENV_NAME}"
 
 auth "${PANTHEON_EMAIL}"
 
-# If requested all sites, then convert SITE_NAME to a CSV list of all sites the user has access to.
-if [[ "all" == ${SITE_NAME} ]]; then
+display_header "Pinging the ${ORG_LABEL} ${ENV_NAME} environment"
 
-  SITE_NAME=""
-  USER_SITES=$(${TERMINUS_BINARY} site:list --org=${ORG_NAME} --field=name)
-
-  if [[ -z "${USER_SITES}" ]]; then
-    printf "\nYou do not have access to any %s environments on Pantheon.\n\nIf you believe this is an error, please contact the %s Technical committee.\n\n" "${ORG_LABEL}" "${ORG_LABEL}"
-    exit 1
-  fi
-
-  display_header "You have access to the following sites:"
-
-  printf "%s\n" "${USER_SITES}"
-
-  IFS=$'\n'
-  for site in $USER_SITES; do
-    if [[ -n "${SITE_NAME}" ]]; then
-      SITE_NAME="${SITE_NAME},"
-    fi
-    SITE_NAME="${SITE_NAME}${site}"
-  done
-fi
+wake_env "${SITE_PATH}"

@@ -10,18 +10,17 @@
 # Make sure we have all the environment information we need.
 # Defines the following variables that we need:
 # - TERMINUS_BINARY
-# - PANTHEON_EMAIL
 # - SITE_PATH
 source ./env-setup.sh
 
 # Note is the third argument received from the command.
-NOTE=$3
+NOTE=$2
 shift
 
 # Confirm we have a note.
 if [[ -z "${NOTE}" ]]; then
-  printf "\nA note describing the deploy is required to run this script.\n\nCommand: %s [site_name] [environment] \"I'm a note about the deploy\"" "$0"
-  printf "\n\nExample: %s heweb16 %s \"Updating plugins\"\n\n" "$0" "${ENV_NAME}"
+  printf "\nA note describing the deploy is required to run this script.\n\nCommand: %s [environment] \"I'm a note about the deploy\"" "$0"
+  printf "\n\nExample: %s %s \"Updating plugins\"\n\n" "$0" "${ENV_NAME}"
   exit 1
 fi
 
@@ -29,12 +28,10 @@ fi
 source ./bash-functions.sh
 source ./terminus-functions.sh
 
-wake_env "${SITE_PATH}"
-
 printf "\n"
 
 # Ask for confirmation.
-confirm_message "Are you sure you want to deploy to the ${ENV_NAME} environment?"
+confirm_message "Are you sure you want to deploy to the ${ORG_LABEL} ${ENV_NAME} environment?"
 
 printf "\n"
 
