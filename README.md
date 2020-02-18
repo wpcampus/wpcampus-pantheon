@@ -1,6 +1,6 @@
-# HighEdWeb and Pantheon
+# WPCampus and Pantheon
 
-Use this repo's scripts to communicate with and manage HighEdWeb websites hosted on Pantheon.
+Use this repo's scripts to communicate with and manage the WPCampus website hosted on Pantheon.
 
 ## Scripts
 
@@ -12,46 +12,18 @@ To run a script, open the `/scripts` directory inside your computer's Terminal a
 
 ### Script: Displaying list of WordPress plugins
 
-Use the following command to display the list of plugins for a specific site, a combination of sites, or all sites you have access to:
+Use the following command to display the list of plugins on our site:
 
 ```
-bash plugins-list.sh [site name,site name,site name]|all
-```
-
-Replace `[site name]` with the [site name given by Pantheon](#highedweb-site-names).
-
-Leave no spaces between the site names. For example:
-
-```
-bash plugins-list.sh hew16,hew17,hew18
-```
-
-To display the plugins for all sites you have access to:
-
-```
-bash plugins-list.sh all
+bash plugins-list.sh wpcampus
 ```
 
 ### Script: Updating WordPress plugins
 
-Use the following command to update the plugins for a specific site, a combination of sites, or all sites you have access to:
+Use the following command to update the plugins on our site:
 
 ```
-bash plugins-update.sh [site name,site name,site name]|all
-```
-
-Replace `[site name]` with the [site name given by Pantheon](#highedweb-site-names).
-
-Leave no spaces between the site names. For example:
-
-```
-bash plugins-update.sh hew16,hew17,hew18
-```
-
-To update plugins for all sites you have access to:
-
-```
-bash plugins-update.sh all
+bash plugins-update.sh wpcampus
 ```
 
 #### Before you run the script
@@ -73,7 +45,7 @@ You can deploy inside the Pantheon Dashboard or through the Terminus CLI.
 Run the following command to deploy:
 
 ```
-bash code-deploy.sh [site name] [test|live] "[deploy note]"
+bash code-deploy.sh wpcampus [test|live] "[deploy note]"
 ```
 
 Replace `[deploy note]` with a note describing the deploy. Be sure to keep the message in quotes.
@@ -84,7 +56,7 @@ Replace `[deploy note]` with a note describing the deploy. Be sure to keep the m
 
 If you're using one of these scripts to manage a website, you will need access to the site's Pantheon Dashboard.
 
-*Contact the HighEdWeb Technical Committee for access.*
+*Contact the WPCampus Technical Committee for access.*
 
 ### 2) Terminus must be installed on your machine
 
@@ -107,21 +79,6 @@ To setup: copy the `.env.sample` file included in the repo, rename to `.env`, an
     * To test: run `terminus` inside your Terminal.
         * **If lots of Terminus information printed:** you do not need to define `TERMINUS_BINARY`.
         * **If the `terminus` command didnt work:** Set `TERMINUS_BINARY` equal to the directory path of your Terminus bin file. The `env.sample` file includes an example.
-
-## HighEdWeb site names
-
-The following are the Pantheon site names for each HighEdWeb site, which are passed as arguments to our scripts.
-
-1. `highedweb` - [highedweb.org](https://www.highedweb.org/)
-2. `hew16` - [2016.highedweb.org](https://2016.highedweb.org/)
-3. `hew17` - [2017.highedweb.org](https://2017.highedweb.org/)
-4. `hew18` - [2018.highedweb.org](https://2018.highedweb.org/)
-5. `highedweb-2019-annual-conference` - [2019.highedweb.org](https://2019.highedweb.org/)
-6. `highedweb-2020-annual-conference` - [2020.highedweb.org](https://2020.highedweb.org/)
-7. `hewacademy` - [wpacademies.highedweb.org](https://wpacademies.highedweb.org/)
-8. `hewlink` - [link.highedweb.org](https://link.highedweb.org/)
-9. `hewregional` - [regionals.highedweb.org](https://regionals.highedweb.org/)
-10. `highedweb-crm` - [membership.highedweb.org](https://membership.highedweb.org/)
 
 ## Files for Pantheon
 
