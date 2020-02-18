@@ -40,7 +40,7 @@ plugins_update_table=$(${TERMINUS_BINARY} wp "${SITE_PATH}" -- plugin list --for
 printf "\nThe following plugins have an update available:\n%s\n" "${plugins_update_table}"
 
 # Ask for update confirmation.
-confirm_message "Are you sure you want to update these plugins in the ${ORG_LABEL} ${ENV_NAME} environment?\nMake sure the Pantheon environment is set to SFTP mode."
+confirm_message "Are you sure you want to update these plugins in the ${ORG_LABEL} ${ENV_NAME} environment?\n\nMake sure the Pantheon environment is set to SFTP mode."
 
 printf "\nUpdating plugins in the %s %s environment...\n\n" "${ORG_LABEL}" "${ENV_NAME}"
 
@@ -60,6 +60,17 @@ printf "\n"
 
 clear_cache "${SITE_PATH}"
 
-printf "\nFYI: The plugin code has only been updated in the defined environments."
-printf "\n\nAfter you've tested the %s environment(s), you will have to deploy the code updates to the TEST and PROD environment(s)." "${ENV_NAME}"
+# Ask for deploy confirmation.
+confirm_message "Do you want to deploy these update(s) to the ${ORG_LABEL} production environment?\n\nWere the updates tested on dev?"
+
+printf "\n"
+
+TEST_PATH="${SITE_NAME}.test"
+deploy "${TEST_PATH}" "${commit_message}"
+
+printf "\n"
+
+LIVE_PATH="${SITE_NAME}.live"
+deploy "${LIVE_PATH}" "${commit_message}"
+
 printf "\n\n"
