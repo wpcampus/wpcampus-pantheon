@@ -55,6 +55,7 @@ confirm_message "Do you want to commit these changes to the ${ORG_LABEL} ${ENV_N
 printf "\n"
 
 commit_code "${SITE_PATH}" "${commit_message}"
+clear_cache "${SITE_PATH}"
 
 printf "\n"
 
@@ -67,10 +68,12 @@ printf "\n"
 
 TEST_PATH="${SITE_NAME}.test"
 deploy "${TEST_PATH}" "${commit_message}"
+clear_cache "${TEST_PATH}"
 
 printf "\n"
 
 LIVE_PATH="${SITE_NAME}.live"
 deploy "${LIVE_PATH}" "${commit_message}"
+clear_cache "${LIVE_PATH}"
 
 printf "\n\n"
