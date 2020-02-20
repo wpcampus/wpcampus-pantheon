@@ -13,7 +13,7 @@
 # - SITE_PATH
 source ./env-setup.sh
 
-# Note is the third argument received from the command.
+# Note is the second argument received from the command.
 NOTE=$2
 shift
 
@@ -41,4 +41,4 @@ printf "\n"
 
 clear_cache "${SITE_PATH}"
 
-printf "\n"
+printf "\nDone!\n\n"

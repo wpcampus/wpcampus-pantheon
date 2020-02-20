@@ -24,4 +24,4 @@ printf "\n"
 
 ${TERMINUS_BINARY} wp "${SITE_PATH}" -- plugin list --format=table
 
-printf "\n"
+printf "\nDone!\n\n"

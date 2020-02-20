@@ -76,4 +76,4 @@ LIVE_PATH="${SITE_NAME}.live"
 deploy "${LIVE_PATH}" "${commit_message}"
 clear_cache "${LIVE_PATH}"
 
-printf "\n\n"
+printf "\nDone!\n\n"
