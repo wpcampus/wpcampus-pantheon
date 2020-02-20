@@ -36,7 +36,15 @@ This script will only update the plugin code on the Pantheon dev environment.
 
 After you've tested the dev environment to ensure the updates did not create issues, you will then have to deploy the code to the site's TEST and PROD environments.
 
-### Script: Deploying code to TEST and PROD
+### Script: Clearing Pantheon cache
+
+Use the following command to clear the caches for a specific Pantheon environment:
+
+```
+bash clear-cache.sh [dev|test|live]
+```
+
+### Script: Deploying code to TEST or PROD environment
 
 You can only commit code to the dev environment. Once tested on dev, you then deploy the code to the TEST and PROD environments. 
 
