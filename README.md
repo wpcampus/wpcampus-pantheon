@@ -44,6 +44,16 @@ Use the following command to clear the caches for a specific Pantheon environmen
 bash clear-cache.sh [dev|test|live]
 ```
 
+### Script: Deploying "hotfix" to production environment.
+
+Use the following command to deploy code all the way to production for a "hotfix":
+
+```
+bash deploy-hotfix.sh "[commit message]"
+```
+
+Replace `[commit message]` with a commit message. Be sure to keep the message in quotes.
+
 ### Script: Deploying code to TEST or PROD environment
 
 You can only commit code to the dev environment. Once tested on dev, you then deploy the code to the TEST and PROD environments. 
