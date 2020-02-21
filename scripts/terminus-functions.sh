@@ -24,6 +24,12 @@ clear_cache() {
   ${TERMINUS_BINARY} env:clear-cache "$1"
 }
 
+# Sets Git or SFTP connection mode on a development environment
+# Excludes Test and Live.
+connection() {
+  ${TERMINUS_BINARY} connection:set "$1" "$2"
+}
+
 # Deploys code to a Pantheon environment.
 # Pass the site path as the first variable, e.g. sitename.dev.
 deploy() {

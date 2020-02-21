@@ -52,7 +52,13 @@ Use the following command to deploy code all the way to production for a "hotfix
 bash deploy-hotfix.sh "[commit message]"
 ```
 
-Replace `[commit message]` with a commit message. Be sure to keep the message in quotes.
+### Script: Setting the connection mode to git or sftp
+
+Use the following command to set the connection mode to git or sftp. It can only be done on the dev environment.
+
+```
+bash connection.sh [git|sftp]
+```
 
 ### Script: Deploying code to TEST or PROD environment
 
