@@ -33,6 +33,12 @@ source ./terminus-functions.sh
 
 printf "\n"
 
+# Gets the diff of uncommitted code changes on the dev environment.
+dev_diff=$(${TERMINUS_BINARY} env:diffstat "${SITE_PATH}")
+
+printf "\nThe following code changes are present on the %s %s environment:" "${ORG_LABEL}" "${ENV_NAME}"
+printf "\n%s\n" "${dev_diff}"
+
 # Ask for confirmation.
 confirm_message "Are you sure you want to deploy to the ${ORG_LABEL} production environment?"
 
