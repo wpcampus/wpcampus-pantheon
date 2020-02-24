@@ -44,6 +44,16 @@ Use the following command to clear the caches for a specific Pantheon environmen
 bash clear-cache.sh [dev|test|live]
 ```
 
+### Script: Creating a backup
+
+Use the following command to create a backup for a specific Pantheon environment:
+
+```
+bash backup-create.sh [dev|test|live] [all|code|files|database|db]
+```
+
+The first argument defines the environment. The second argument defines which elements will be backed up.
+
 ### Script: Deploying "hotfix" to production environment.
 
 Use the following command to deploy code all the way to production for a "hotfix":

@@ -35,3 +35,16 @@ connection() {
 deploy() {
   ${TERMINUS_BINARY} env:deploy "$1" --note "$2"
 }
+
+# Creates a backup of a Pantheon environment.
+# Pass the site path as the first variable, e.g. sitename.dev.
+backup() {
+
+  # Default backup element to all.
+  # @TODO: test to make sure value is in valid array of options.
+  if [[ -z "${element}" ]]; then
+    element="all"
+  fi
+
+  ${TERMINUS_BINARY} backup:create "$1" --element=${element}
+}
