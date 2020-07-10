@@ -13,7 +13,7 @@
 # - SITE_PATH
 source ./env-setup.sh
 
-# Backup lement is the second argument received from the command.
+# Backup element is the second argument received from the command.
 # Options: all|code|files|database|db
 element=$2
 shift

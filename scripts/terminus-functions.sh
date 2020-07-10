@@ -40,11 +40,22 @@ deploy() {
 # Pass the site path as the first variable, e.g. sitename.dev.
 backup() {
 
-  # Default backup element to all.
-  # @TODO: test to make sure value is in valid array of options.
-  if [[ -z "${element}" ]]; then
-    element="all"
+  element_default="all"
+
+  # If no element is provided, set default.
+  if [[ -z "${2}" ]]; then
+    element="${element_default}"
+  else
+
+    element_options=("all" "code" "files" "database" "db")
+
+    # If not one of element options, set default.
+    if [[ ! ${element_options[*]} =~ ${2} ]]; then
+      element="${element_default}"
+    else
+      element="${2}"
+    fi
   fi
 
-  ${TERMINUS_BINARY} backup:create "$1" --element=${element}
+  ${TERMINUS_BINARY} backup:create "$1" --element="${element}"
 }
